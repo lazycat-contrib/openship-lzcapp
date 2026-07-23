@@ -13,7 +13,7 @@ The scheduled GitHub workflow watches the stable SemVer tags of the Openship API
 
 PostgreSQL and Redis are pinned to one-time LazyCat Registry copies and are intentionally excluded from automatic updates.
 
-The package bootstraps the first administrator from deployment parameters and injects LazyCat's file chooser bridge for Openship's import/export features.
+The package bootstraps the first administrator from deployment parameters without delaying Dashboard startup.
 
 Openship's upstream Docker Compose deployment does not expose a host Docker socket. Deploying workloads to the LazyCat host itself therefore requires device testing; managing an external server over SSH is the safer expected path.
 
