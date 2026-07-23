@@ -71,6 +71,7 @@ services:
       - PORT=4000
       - CLOUD_MODE=false
       - DEPLOY_MODE=docker
+      - OPENSHIP_REQUIRE_AUTH=true
       - CLOUD_MAX_PROJECTS_PER_USER=2
       - POSTGRES_USER=openship
       - POSTGRES_PASSWORD={{ stable_secret "postgres_password" }}
@@ -79,7 +80,7 @@ services:
       - REDIS_URL=redis://redis:6379
       - OPENSHIP_REQUIRE_REDIS=true
       - BETTER_AUTH_SECRET={{ stable_secret "better_auth_secret" }}
-      - BETTER_AUTH_URL=https://{{ .S.AppDomain }}
+      - OPENSHIP_PUBLIC_URL=https://{{ .S.AppDomain }}
       - OPENSHIP_EXTRA_TRUSTED_ORIGINS=https://{{ .S.AppDomain }}
       - INTERNAL_TOKEN={{ stable_secret "internal_token" }}
       - GITHUB_APP_SLUG=openship-io
