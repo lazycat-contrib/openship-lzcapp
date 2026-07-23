@@ -1,0 +1,32 @@
+params:
+  - id: admin_name
+    type: string
+    name: Administrator Name
+    description: Display name for the initial Openship administrator.
+    default_value: LazyCat Admin
+    optional: false
+
+  - id: login_email
+    type: string
+    name: Login Email
+    description: Email address of the Openship account used on the login page.
+    optional: false
+
+  - id: login_password
+    type: secret
+    name: Login Password
+    description: Password of the Openship account used on the login page.
+    default_value: $random(len=24)
+    optional: false
+
+locales:
+  zh:
+    admin_name:
+      name: 管理员名称
+      description: 首个 Openship 管理员的显示名称。
+    login_email:
+      name: 登录邮箱
+      description: Openship 登录页面使用的账号邮箱。
+    login_password:
+      name: 登录密码
+      description: Openship 登录页面使用的账号密码。

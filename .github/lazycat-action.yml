@@ -1,0 +1,71 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: .lazycat-build/openship.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: api
+
+build:
+  run_buildscript: false
+
+images:
+  - id: api
+    target: service
+    service: api
+    source: ghcr.io/dockers-x/openship-api
+    channel: stable
+    tag_regex: '^[0-9]+[.][0-9]+[.][0-9]+$'
+    delivery:
+      mode: lazycat
+
+  - id: dashboard
+    target: service
+    service: dashboard
+    source: ghcr.io/dockers-x/openship-dashboard
+    channel: stable
+    tag_regex: '^[0-9]+[.][0-9]+[.][0-9]+$'
+    delivery:
+      mode: lazycat
+
+  - id: web
+    target: service
+    service: web
+    source: ghcr.io/dockers-x/openship
+    channel: stable
+    tag_regex: '^[0-9]+[.][0-9]+[.][0-9]+$'
+    delivery:
+      mode: lazycat
+
+stores:
+  official:
+    enabled: true
+    skip_if_version_exists: true
+    create_if_missing: true
+    changelog_locales:
+      - zh
+      - en
+    retry:
+      enabled: false
+      max_attempts: 3
+      initial_delay: 2s
+      max_delay: 30s
+    application:
+      language: zh
+      name: Openship
+      source: https://github.com/oblien/openship
+      source_author: oblien
+
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: Openship
+    summary: Published automatically from GitHub Actions.
