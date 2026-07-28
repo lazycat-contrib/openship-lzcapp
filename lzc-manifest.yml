@@ -62,8 +62,8 @@ services:
     mem_limit: 512M
   api:
     # ghcr.io/dockers-x/openship-api:0.3.0
-    # upstream: ghcr.io/dockers-x/openship-api:0.3.0
-    image: registry.lazycat.cloud/czyt/dockers-x/openship-api:4428d4c655575cbf
+    # upstream: ghcr.io/dockers-x/openship-api:0.4.5
+    image: registry.lazycat.cloud/czyt/dockers-x/openship-api:ec203289d4ceac34
     command: >-
       /bin/sh -c 'bun /lzcapp/pkg/content/openship/wait-for-dependencies.mjs && exec bun run apps/api/dist/index.js'
     environment:
@@ -111,8 +111,8 @@ services:
     mem_limit: 2G
   dashboard:
     # ghcr.io/dockers-x/openship-dashboard:0.3.0
-    # upstream: ghcr.io/dockers-x/openship-dashboard:0.3.0
-    image: registry.lazycat.cloud/czyt/dockers-x/openship-dashboard:f1a3d94127da76b1
+    # upstream: ghcr.io/dockers-x/openship-dashboard:0.4.5
+    image: registry.lazycat.cloud/czyt/dockers-x/openship-dashboard:b89b89b3c2226069
     command: >-
       /bin/sh -c '(node -e "(async()=>{const url=\"http://api:4000/api/system/bootstrap-admin\";const body={name:process.env.OPENSHIP_ADMIN_NAME,email:process.env.OPENSHIP_ADMIN_EMAIL,password:process.env.OPENSHIP_ADMIN_PASSWORD};const headers={\"content-type\":\"application/json\",\"x-internal-token\":process.env.INTERNAL_TOKEN};let last=\"API unavailable\";for(let i=0;i<60;i++){try{const r=await fetch(url,{method:\"POST\",headers,body:JSON.stringify(body)});if(r.ok||r.status===409)process.exit(0);last=\"HTTP \"+r.status}catch(e){last=e.message}await new Promise(resolve=>setTimeout(resolve,2000))}console.error(\"Administrator bootstrap failed: \"+last)})()" &) && exec node apps/dashboard/server.js'
     environment:
@@ -129,8 +129,8 @@ services:
     mem_limit: 1G
   web:
     # ghcr.io/dockers-x/openship:0.3.0
-    # upstream: ghcr.io/dockers-x/openship:0.3.0
-    image: registry.lazycat.cloud/czyt/dockers-x/openship:81629d75e5e13727
+    # upstream: ghcr.io/dockers-x/openship:0.4.5
+    image: registry.lazycat.cloud/czyt/dockers-x/openship:a51677bef330e5ce
     environment:
       - NODE_ENV=production
       - PORT=3000

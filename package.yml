@@ -1,12 +1,11 @@
 package: community.lazycat.app.openship
-version: 0.3.0
+version: 0.4.5
 name: Openship
 description: Open-source, self-hostable deployment platform with built-in CI/CD.
 min_os_version: 1.5.0
 author: oblien
 license: Apache-2.0
 homepage: https://github.com/oblien/openship
-
 locales:
   zh:
     name: Openship
@@ -18,7 +17,6 @@ locales:
     description: Open-source, self-hostable deployment platform with built-in CI/CD.
     entries.dashboard.title: Dashboard
     entries.website.title: Website
-
 permissions:
   required:
     - net.internet
