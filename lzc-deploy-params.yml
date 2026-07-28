@@ -1,4 +1,5 @@
 params:
+  # ── Administrator ──────────────────────────────────────
   - id: admin_name
     type: string
     name: Administrator Name
@@ -20,6 +21,65 @@ params:
     default_value: "$random(len=24)"
     optional: false
 
+  # ── GitHub OAuth (optional) ────────────────────────────
+  - id: github_client_id
+    type: string
+    name: GitHub Client ID
+    description: GitHub OAuth App client ID. Leave empty to skip GitHub login.
+    optional: true
+
+  - id: github_client_secret
+    type: secret
+    name: GitHub Client Secret
+    description: GitHub OAuth App client secret.
+    optional: true
+
+  # ── Google OAuth (optional) ────────────────────────────
+  - id: google_client_id
+    type: string
+    name: Google Client ID
+    description: Google OAuth client ID. Leave empty to skip Google login.
+    optional: true
+
+  - id: google_client_secret
+    type: secret
+    name: Google Client Secret
+    description: Google OAuth client secret.
+    optional: true
+
+  # ── SMTP (optional) ────────────────────────────────────
+  - id: smtp_host
+    type: string
+    name: SMTP Host
+    description: SMTP server hostname for transactional email. Leave empty to skip.
+    optional: true
+
+  - id: smtp_port
+    type: string
+    name: SMTP Port
+    description: SMTP server port.
+    default_value: "587"
+    optional: true
+
+  - id: smtp_user
+    type: string
+    name: SMTP User
+    description: SMTP authentication username.
+    optional: true
+
+  - id: smtp_pass
+    type: secret
+    name: SMTP Password
+    description: SMTP authentication password.
+    optional: true
+
+  - id: smtp_from
+    type: string
+    name: SMTP From
+    description: Sender address for transactional emails.
+    default_value: "Openship <noreply@openship.local>"
+    optional: true
+
 locales:
   zh:
     admin_name:
@@ -31,3 +91,30 @@ locales:
     login_password:
       name: 登录密码
       description: Openship 登录页面使用的账号密码。
+    github_client_id:
+      name: GitHub Client ID
+      description: GitHub OAuth App 客户端 ID。留空则跳过 GitHub 登录。
+    github_client_secret:
+      name: GitHub Client Secret
+      description: GitHub OAuth App 客户端密钥。
+    google_client_id:
+      name: Google Client ID
+      description: Google OAuth 客户端 ID。留空则跳过 Google 登录。
+    google_client_secret:
+      name: Google Client Secret
+      description: Google OAuth 客户端密钥。
+    smtp_host:
+      name: SMTP 服务器
+      description: 事务邮件 SMTP 服务器地址。留空则跳过。
+    smtp_port:
+      name: SMTP 端口
+      description: SMTP 服务器端口。
+    smtp_user:
+      name: SMTP 用户名
+      description: SMTP 认证用户名。
+    smtp_pass:
+      name: SMTP 密码
+      description: SMTP 认证密码。
+    smtp_from:
+      name: 发件人地址
+      description: 事务邮件发件人地址。
