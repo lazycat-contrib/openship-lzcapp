@@ -114,7 +114,7 @@ services:
     # upstream: ghcr.io/dockers-x/openship-dashboard:0.3.0
     image: registry.lazycat.cloud/czyt/dockers-x/openship-dashboard:f1a3d94127da76b1
     command: >-
-      /bin/sh -c 'node -e "(async()=>{const url=\"http://api:4000/api/system/bootstrap-admin\";const body={name:process.env.OPENSHIP_ADMIN_NAME,email:process.env.OPENSHIP_ADMIN_EMAIL,password:process.env.OPENSHIP_ADMIN_PASSWORD};const headers={\"content-type\":\"application/json\",\"x-internal-token\":process.env.INTERNAL_TOKEN};let last=\"API unavailable\";for(let i=0;i<60;i++){try{const r=await fetch(url,{method:\"POST\",headers,body:JSON.stringify(body)});if(r.ok||r.status===409)process.exit(0);last=\"HTTP \"+r.status}catch(e){last=e.message}await new Promise(resolve=>setTimeout(resolve,2000))}console.error(\"Administrator bootstrap failed: \"+last)})()" & exec node apps/dashboard/server.js'
+      /bin/sh -c '(node -e "(async()=>{const url=\"http://api:4000/api/system/bootstrap-admin\";const body={name:process.env.OPENSHIP_ADMIN_NAME,email:process.env.OPENSHIP_ADMIN_EMAIL,password:process.env.OPENSHIP_ADMIN_PASSWORD};const headers={\"content-type\":\"application/json\",\"x-internal-token\":process.env.INTERNAL_TOKEN};let last=\"API unavailable\";for(let i=0;i<60;i++){try{const r=await fetch(url,{method:\"POST\",headers,body:JSON.stringify(body)});if(r.ok||r.status===409)process.exit(0);last=\"HTTP \"+r.status}catch(e){last=e.message}await new Promise(resolve=>setTimeout(resolve,2000))}console.error(\"Administrator bootstrap failed: \"+last)})()" &) && exec node apps/dashboard/server.js'
     environment:
       - NODE_ENV=production
       - PORT=3001
