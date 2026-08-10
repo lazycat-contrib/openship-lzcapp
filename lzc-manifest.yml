@@ -129,8 +129,8 @@ services:
     mem_limit: 1G
   web:
     # ghcr.io/dockers-x/openship:0.3.0
-    # upstream: ghcr.io/dockers-x/openship:0.5.0
-    image: registry.lazycat.cloud/czyt/dockers-x/openship:5b0ad1d30814312d
+    # upstream: ghcr.io/dockers-x/openship:0.6.1
+    image: registry.lazycat.cloud/czyt/dockers-x/openship:480af4b0a97b6a4c
     environment:
       - NODE_ENV=production
       - PORT=3000
