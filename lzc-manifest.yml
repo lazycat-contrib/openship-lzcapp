@@ -56,7 +56,7 @@ services:
     mem_limit: 512M
   api:
     # upstream:  ghcr.io/oblien/openship-api:0.6.5
-    image: registry.lazycat.cloud/czyt/dockers-x/openship-api:c1964858bb3a395c
+    image: registry.lazycat.cloud/czyt/oblien/openship-api:51c2196d9e7ccca9
     command: >-
       /bin/sh -c 'bun /lzcapp/pkg/content/openship/wait-for-dependencies.mjs && exec bun run apps/api/dist/index.js'
     environment:
@@ -104,7 +104,7 @@ services:
     mem_limit: 2G
   dashboard:
     # upstream: ghcr.io/oblien/openship-dashboard:0.6.5
-    image: registry.lazycat.cloud/czyt/dockers-x/openship-dashboard:66db12b939e08d81
+    image: registry.lazycat.cloud/czyt/oblien/openship-dashboard:d45d876b40caa07c
     command: >-
       /bin/sh -c '(node -e "(async()=>{const url=\"http://api:4000/api/system/bootstrap-admin\";const body={name:process.env.OPENSHIP_ADMIN_NAME,email:process.env.OPENSHIP_ADMIN_EMAIL,password:process.env.OPENSHIP_ADMIN_PASSWORD};const headers={\"content-type\":\"application/json\",\"x-internal-token\":process.env.INTERNAL_TOKEN};let last=\"API unavailable\";for(let i=0;i<60;i++){try{const r=await fetch(url,{method:\"POST\",headers,body:JSON.stringify(body)});if(r.ok||r.status===409)process.exit(0);last=\"HTTP \"+r.status}catch(e){last=e.message}await new Promise(resolve=>setTimeout(resolve,2000))}console.error(\"Administrator bootstrap failed: \"+last)})()" &) && exec node apps/dashboard/server.js'
     environment:
