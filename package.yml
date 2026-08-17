@@ -11,12 +11,10 @@ locales:
     name: Openship
     description: 开源、自托管并内置 CI/CD 的应用部署平台。
     entries.dashboard.title: 控制台
-    entries.website.title: 项目主页
   en:
     name: Openship
     description: Open-source, self-hostable deployment platform with built-in CI/CD.
     entries.dashboard.title: Dashboard
-    entries.website.title: Website
 permissions:
   required:
     - net.internet

@@ -21,7 +21,7 @@ images:
   - id: api
     target: service
     service: api
-    source: ghcr.io/dockers-x/openship-api
+    source:  ghcr.io/oblien/openship-api
     channel: stable
     tag_regex: '^[0-9]+[.][0-9]+[.][0-9]+$'
     delivery:
@@ -30,20 +30,12 @@ images:
   - id: dashboard
     target: service
     service: dashboard
-    source: ghcr.io/dockers-x/openship-dashboard
+    source: ghcr.io/oblien/openship-dashboard
     channel: stable
     tag_regex: '^[0-9]+[.][0-9]+[.][0-9]+$'
     delivery:
       mode: lazycat
 
-  - id: web
-    target: service
-    service: web
-    source: ghcr.io/dockers-x/openship
-    channel: stable
-    tag_regex: '^[0-9]+[.][0-9]+[.][0-9]+$'
-    delivery:
-      mode: lazycat
 
 stores:
   official:
